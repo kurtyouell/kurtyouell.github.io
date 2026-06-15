@@ -210,7 +210,6 @@
   }
 
   .tool-card:hover { background: var(--surface2); }
-
   .tool-card.full-width { grid-column: 1 / -1; }
 
   .tool-tab {
@@ -243,7 +242,6 @@
 
   .tool-img {
     width: 100%;
-    aspect-ratio: 16/9;
     background: var(--surface2);
     border-radius: 4px;
     border: 1px solid var(--border);
@@ -253,11 +251,18 @@
     justify-content: center;
   }
 
-  .tool-card.full-width .tool-img { aspect-ratio: 21/9; }
+  .tool-img.ratio-wide { aspect-ratio: 21/9; }
+  .tool-img.ratio-std { aspect-ratio: 16/9; }
+  .tool-img.ratio-tall { aspect-ratio: 4/3; }
 
   .tool-img img {
     width: 100%;
     height: 100%;
+    object-fit: contain;
+    background: var(--surface2);
+  }
+
+  .tool-img img.crop-tl {
     object-fit: cover;
     object-position: top left;
   }
@@ -299,7 +304,15 @@
     overflow: hidden;
   }
 
-  .project-img img { width: 100%; height: 100%; object-fit: cover; }
+  .project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .project-img img.zoom-out { object-fit: contain; background: var(--surface2); }
+  .project-img img.zoom-out-slight { object-fit: cover; object-position: center center; transform: scale(0.88); transform-origin: center; }
+  .project-img img.zoom-out-more { object-fit: cover; object-position: center center; transform: scale(0.78); transform-origin: center; }
 
   .project-img-placeholder {
     font-size: 11px;
@@ -360,7 +373,6 @@
     display: flex;
     gap: 1.5rem;
     flex-wrap: wrap;
-    align-items: flex-end;
   }
 
   .spec { display: flex; flex-direction: column; }
@@ -399,7 +411,6 @@
   }
 
   .yt-btn:hover { background: var(--accent); color: #fff; }
-
   .yt-icon { width: 14px; height: 14px; fill: currentColor; }
 
   /* ABOUT */
@@ -426,7 +437,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 30%;
+    object-position: center 55%;
   }
 
   .about-headshot-placeholder {
@@ -447,15 +458,32 @@
 
   .about-text p:first-child { color: var(--text); font-size: 18px; }
 
-  .skills-list { display: flex; flex-direction: column; gap: 1.1rem; }
+  /* SKILLS — clean list, no bars */
+  .skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
 
-  .skill-row { display: flex; flex-direction: column; gap: 5px; }
+  .skill-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
 
-  .skill-name { font-size: 13px; font-weight: 600; color: var(--text); }
+  .skill-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
 
-  .skill-bar-bg { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
-
-  .skill-bar-fill { height: 100%; background: var(--accent); border-radius: 2px; }
+  .skill-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
 
   /* CONTACT */
   .contact-inner {
@@ -522,7 +550,7 @@
     .hero-stats { gap: 1.5rem; }
     .tools-grid { grid-template-columns: 1fr; }
     .tool-card.full-width { grid-column: 1; }
-    .tool-card.full-width .tool-img { aspect-ratio: 16/9; }
+    .tool-img.ratio-wide { aspect-ratio: 16/9; }
     .about-grid { grid-template-columns: 1fr; gap: 2rem; }
     .about-headshot { width: 140px; height: 140px; }
     .contact-inner { flex-direction: column; }
@@ -550,10 +578,22 @@
   <h1 class="hero-name">Kurt<br><span>Youell</span></h1>
   <p class="hero-tagline">A construction professional who builds things differently.</p>
   <div class="hero-stats">
-    <div class="stat"><span class="stat-number">10+</span><span class="stat-label">Years experience</span></div>
-    <div class="stat"><span class="stat-number">$20M+</span><span class="stat-label">Pursuits led</span></div>
-    <div class="stat"><span class="stat-number">52</span><span class="stat-label">Active projects tracked</span></div>
-    <div class="stat"><span class="stat-number">$327M</span><span class="stat-label">Pipeline value</span></div>
+    <div class="stat">
+      <span class="stat-number">10+</span>
+      <span class="stat-label">Years experience</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">50+</span>
+      <span class="stat-label">Projects across career</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">~$60M</span>
+      <span class="stat-label">MT value estimated</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">~$20M</span>
+      <span class="stat-label">Largest MT package</span>
+    </div>
   </div>
   <div class="hero-links">
     <a href="#tools" class="btn btn-primary">See the work</a>
@@ -575,8 +615,8 @@
       <span class="tool-tab">01 — Dashboards</span>
       <div class="tool-title">Dashboards & Analytics</div>
       <p class="tool-desc">Live pipeline tracking across 52 active projects with $327M in pursuit value. 8-month outlook forecasting, stage analytics, win/loss tracking, and sales summit goal reporting — all driven from a single master sheet.</p>
-      <div class="tool-img">
-        <img src="dashboards.png" alt="Pipeline dashboard and analytics" onerror="this.parentElement.innerHTML='<span class=\'tool-img-placeholder\'>Screenshot coming</span>'">
+      <div class="tool-img ratio-wide">
+        <img src="dashboards.png" alt="Pipeline dashboard and analytics" class="crop-tl" onerror="this.parentElement.innerHTML='<span class=\'tool-img-placeholder\'>Screenshot coming</span>'">
       </div>
     </div>
 
@@ -584,7 +624,7 @@
       <span class="tool-tab">02 — Estimating</span>
       <div class="tool-title">Estimating Systems</div>
       <p class="tool-desc">End-to-end estimating tools from conceptual through detailed pricing. Member schedules, cost analysis, scope breakdowns, and pricing summaries — built for transparency, repeatability, and rapid iteration under tight timelines.</p>
-      <div class="tool-img">
+      <div class="tool-img ratio-tall">
         <img src="estimating.png" alt="Estimating tools" onerror="this.parentElement.innerHTML='<span class=\'tool-img-placeholder\'>Screenshot coming</span>'">
       </div>
     </div>
@@ -593,7 +633,7 @@
       <span class="tool-tab">03 — Proposals</span>
       <div class="tool-title">Proposals & Marketing</div>
       <p class="tool-desc">Client-facing proposals that translate complex mass timber scope into clear, visual, and commercially compelling presentations. Templates, scope matrices, VE analysis, and project timelines — designed to win work.</p>
-      <div class="tool-img">
+      <div class="tool-img ratio-tall">
         <img src="proposals.png" alt="Proposals" onerror="this.parentElement.innerHTML='<span class=\'tool-img-placeholder\'>Screenshot coming</span>'">
       </div>
     </div>
@@ -602,7 +642,7 @@
       <span class="tool-tab">04 — Models</span>
       <div class="tool-title">Sales Models</div>
       <p class="tool-desc">Dynamic 3D models built in Cadwork to evaluate scope, pricing, and feasibility early in the sales cycle. Enabled faster go/no-go decisions and clearer alignment between sales and operations before engineering is engaged.</p>
-      <div class="tool-img">
+      <div class="tool-img ratio-std">
         <img src="salesmodels.png" alt="Sales models" onerror="this.parentElement.innerHTML='<span class=\'tool-img-placeholder\'>Screenshot coming</span>'">
       </div>
     </div>
@@ -611,7 +651,7 @@
       <span class="tool-tab">05 — Tracking</span>
       <div class="tool-title">Project Tracking & Data Standards</div>
       <p class="tool-desc">Centralized tracking tools for scope, quantities, schedules, and decision status across concurrent projects. Consistent data structures across models enabled cleaner handoffs, automation, and reliable downstream reporting.</p>
-      <div class="tool-img">
+      <div class="tool-img ratio-std">
         <img src="tracking.png" alt="Project tracking" onerror="this.parentElement.innerHTML='<span class=\'tool-img-placeholder\'>Screenshot coming</span>'">
       </div>
     </div>
@@ -620,7 +660,7 @@
       <span class="tool-tab">06 — Engineering</span>
       <div class="tool-title">Concept-Level Engineering Tools</div>
       <p class="tool-desc">Parametric calculators for early-stage GLT sizing and CLT fire-resistance checks. Supported informed design decisions and go/no-go calls before full engineering engagement — reducing cost and schedule risk at the front end.</p>
-      <div class="tool-img">
+      <div class="tool-img ratio-tall">
         <img src="engineering.png" alt="Engineering calculators" onerror="this.parentElement.innerHTML='<span class=\'tool-img-placeholder\'>Screenshot coming</span>'">
       </div>
     </div>
@@ -629,7 +669,7 @@
       <span class="tool-tab">07 — Documentation</span>
       <div class="tool-title">User Manuals & SOPs</div>
       <p class="tool-desc">Clear, step-by-step documentation covering Cadwork standards, file naming conventions, SharePoint architecture, and fabrication design workflows. Built to reduce reliance on tribal knowledge and increase team autonomy at scale.</p>
-      <div class="tool-img">
+      <div class="tool-img ratio-std">
         <img src="sops.png" alt="SOPs and documentation" onerror="this.parentElement.innerHTML='<span class=\'tool-img-placeholder\'>Screenshot coming</span>'">
       </div>
     </div>
@@ -648,7 +688,7 @@
 
     <div class="project-card">
       <div class="project-img">
-        <img src="proj-microsoft.png" alt="Microsoft Silicon Valley Campus" onerror="this.parentElement.innerHTML='<span class=\'project-img-placeholder\'>Microsoft Silicon Valley</span>'">
+        <img src="proj-microsoft.png" alt="Microsoft Silicon Valley Campus" class="zoom-out-slight" onerror="this.parentElement.innerHTML='<span class=\'project-img-placeholder\'>Microsoft Silicon Valley</span>'">
       </div>
       <div class="project-body">
         <div class="project-meta">
@@ -672,7 +712,7 @@
 
     <div class="project-card">
       <div class="project-img">
-        <img src="proj-sunnyvale.png" alt="Sunnyvale Campus" onerror="this.parentElement.innerHTML='<span class=\'project-img-placeholder\'>Sunnyvale Campus</span>'">
+        <img src="proj-sunnyvale.png" alt="Sunnyvale Campus" class="zoom-out-slight" onerror="this.parentElement.innerHTML='<span class=\'project-img-placeholder\'>Sunnyvale Campus</span>'">
       </div>
       <div class="project-body">
         <div class="project-meta">
@@ -720,7 +760,7 @@
 
     <div class="project-card">
       <div class="project-img">
-        <img src="proj-tallwood.png" alt="Tallwood 1" onerror="this.parentElement.innerHTML='<span class=\'project-img-placeholder\'>Tallwood 1</span>'">
+        <img src="proj-tallwood.png" alt="Tallwood 1" class="zoom-out-more" onerror="this.parentElement.innerHTML='<span class=\'project-img-placeholder\'>Tallwood 1</span>'">
       </div>
       <div class="project-body">
         <div class="project-meta">
@@ -782,30 +822,14 @@
       <p>Based in Canada. Open to relocation — including internationally. Always open to connecting with interesting people doing interesting work.</p>
     </div>
     <div class="skills-list">
-      <div class="skill-row">
-        <span class="skill-name">Preconstruction & Estimating</span>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:95%"></div></div>
-      </div>
-      <div class="skill-row">
-        <span class="skill-name">BIM & 3D Modeling (Cadwork)</span>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div>
-      </div>
-      <div class="skill-row">
-        <span class="skill-name">Data Analysis & Dashboards</span>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%"></div></div>
-      </div>
-      <div class="skill-row">
-        <span class="skill-name">Proposals & Marketing</span>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:78%"></div></div>
-      </div>
-      <div class="skill-row">
-        <span class="skill-name">Team Leadership & Process Design</span>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div>
-      </div>
-      <div class="skill-row">
-        <span class="skill-name">AI-Assisted Workflows</span>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:75%"></div></div>
-      </div>
+      <div class="skill-row"><span class="skill-dot"></span><span class="skill-name">Preconstruction & Estimating</span></div>
+      <div class="skill-row"><span class="skill-dot"></span><span class="skill-name">BIM & 3D Modeling (Cadwork)</span></div>
+      <div class="skill-row"><span class="skill-dot"></span><span class="skill-name">Data Analysis & Dashboards</span></div>
+      <div class="skill-row"><span class="skill-dot"></span><span class="skill-name">Proposals & Marketing</span></div>
+      <div class="skill-row"><span class="skill-dot"></span><span class="skill-name">Team Leadership & Process Design</span></div>
+      <div class="skill-row"><span class="skill-dot"></span><span class="skill-name">Vendor & Subcontractor Coordination</span></div>
+      <div class="skill-row"><span class="skill-dot"></span><span class="skill-name">SharePoint & Information Architecture</span></div>
+      <div class="skill-row"><span class="skill-dot"></span><span class="skill-name">AI-Assisted Workflows</span></div>
     </div>
   </div>
 </section>
