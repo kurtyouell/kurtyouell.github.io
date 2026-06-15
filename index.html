@@ -76,11 +76,11 @@
 
   /* HERO */
   .hero {
-    min-height: 100vh;
+    min-height: 85vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 8rem 3rem 4rem;
+    padding: 7rem 3rem 3rem;
     max-width: 1100px;
     margin: 0 auto;
   }
@@ -91,7 +91,7 @@
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
   }
 
   .hero-name {
@@ -100,7 +100,7 @@
     letter-spacing: -0.03em;
     line-height: 0.92;
     color: var(--text);
-    margin-bottom: 2rem;
+    margin-bottom: 1.75rem;
   }
 
   .hero-name span { color: var(--accent); }
@@ -110,14 +110,14 @@
     font-weight: 400;
     color: var(--muted);
     max-width: 520px;
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
     line-height: 1.5;
   }
 
   .hero-stats {
     display: flex;
     gap: 3rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
     flex-wrap: wrap;
   }
 
@@ -165,7 +165,7 @@
 
   /* SECTIONS */
   section {
-    padding: 6rem 3rem;
+    padding: 5rem 3rem;
     max-width: 1100px;
     margin: 0 auto;
   }
@@ -191,7 +191,7 @@
   .section-intro {
     color: var(--muted);
     max-width: 580px;
-    margin-bottom: 3.5rem;
+    margin-bottom: 3rem;
     font-size: 16px;
     font-weight: 400;
   }
@@ -204,10 +204,10 @@
     margin: 0 auto;
   }
 
-  /* TOOLS */
+  /* TOOLS — 2 column */
   .tools-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
@@ -223,6 +223,10 @@
 
   .tool-card:hover { background: var(--surface2); }
 
+  .tool-card.full-width {
+    grid-column: 1 / -1;
+  }
+
   .tool-tab {
     font-size: 10px;
     font-weight: 700;
@@ -237,7 +241,7 @@
   }
 
   .tool-title {
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 700;
     color: var(--text);
     margin-bottom: 0.75rem;
@@ -254,7 +258,7 @@
 
   .tool-img {
     width: 100%;
-    aspect-ratio: 16/10;
+    aspect-ratio: 16/9;
     background: var(--surface2);
     border-radius: 4px;
     border: 1px solid var(--border);
@@ -262,6 +266,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .tool-card.full-width .tool-img {
+    aspect-ratio: 21/9;
   }
 
   .tool-img img {
@@ -366,12 +374,13 @@
     border-top: 1px solid var(--border);
     display: flex;
     gap: 1.5rem;
+    flex-wrap: wrap;
   }
 
   .spec { display: flex; flex-direction: column; }
 
   .spec-val {
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 800;
     color: var(--text);
     letter-spacing: -0.01em;
@@ -406,11 +415,7 @@
     justify-content: center;
   }
 
-  .about-headshot img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  .about-headshot img { width: 100%; height: 100%; object-fit: cover; }
 
   .about-headshot-placeholder {
     font-size: 10px;
@@ -429,30 +434,17 @@
     font-weight: 400;
   }
 
-  .about-text p:first-child { color: var(--text); font-size: 18px; font-weight: 400; }
+  .about-text p:first-child { color: var(--text); font-size: 18px; }
 
   .skills-list { display: flex; flex-direction: column; gap: 1.1rem; }
 
   .skill-row { display: flex; flex-direction: column; gap: 5px; }
 
-  .skill-name {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text);
-  }
+  .skill-name { font-size: 13px; font-weight: 600; color: var(--text); }
 
-  .skill-bar-bg {
-    height: 3px;
-    background: var(--border);
-    border-radius: 2px;
-    overflow: hidden;
-  }
+  .skill-bar-bg { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
 
-  .skill-bar-fill {
-    height: 100%;
-    background: var(--accent);
-    border-radius: 2px;
-  }
+  .skill-bar-fill { height: 100%; background: var(--accent); border-radius: 2px; }
 
   /* CONTACT */
   .contact-inner {
@@ -475,17 +467,12 @@
     margin-bottom: 0.5rem;
   }
 
-  .contact-text p {
-    color: var(--muted);
-    font-size: 15px;
-    font-weight: 400;
-  }
+  .contact-text p { color: var(--muted); font-size: 15px; }
 
   .contact-links { display: flex; flex-direction: column; gap: 0.85rem; }
 
   .contact-link {
     font-size: 14px;
-    font-weight: 400;
     color: var(--muted);
     text-decoration: none;
     display: flex;
@@ -522,10 +509,12 @@
     nav { padding: 1rem 1.5rem; }
     .nav-links { gap: 1rem; }
     section { padding: 4rem 1.5rem; }
-    .hero { padding: 7rem 1.5rem 3rem; }
+    .hero { padding: 6rem 1.5rem 3rem; }
     .hero-stats { gap: 1.5rem; }
+    .tools-grid { grid-template-columns: 1fr; }
+    .tool-card.full-width { grid-column: 1; }
     .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .about-headshot { width: 140px; height: 140px; }
+    .about-headshot { width: 130px; height: 130px; }
     .contact-inner { flex-direction: column; }
   }
 
@@ -638,7 +627,7 @@
       </div>
     </div>
 
-    <div class="tool-card">
+    <div class="tool-card full-width">
       <span class="tool-tab">07 — Documentation</span>
       <div class="tool-title">User Manuals & SOPs</div>
       <p class="tool-desc">Clear, step-by-step documentation covering Cadwork standards, file naming conventions, SharePoint architecture, and fabrication design workflows. Built to reduce reliance on tribal knowledge and increase team autonomy at scale.</p>
@@ -666,14 +655,14 @@
       <div class="project-body">
         <div class="project-meta">
           <span class="project-tag">Commercial</span>
-          <span class="project-tag">BIM Coordination</span>
+          <span class="project-tag">Outsource Manager</span>
         </div>
         <div class="project-title">Sunnyvale Campus</div>
         <div class="project-location">Sunnyvale, CA — Major Tech Client</div>
         <p class="project-desc">Multi-building mass timber commercial campus requiring 22 months of detailing. Managed outsourced detailing teams across 2,874 glulam members and 2,591 CLT panels, including ~300,000 lbs of factory-installed steel connections.</p>
         <div class="project-specs">
-          <div class="spec"><span class="spec-val">300K</span><span class="spec-key">sq ft</span></div>
-          <div class="spec"><span class="spec-val">22mo</span><span class="spec-key">Detailing</span></div>
+          <div class="spec"><span class="spec-val">300K</span><span class="spec-key">Sq ft</span></div>
+          <div class="spec"><span class="spec-val">~$15-20M</span><span class="spec-key">MT Package</span></div>
           <div class="spec"><span class="spec-val">2022</span><span class="spec-key">Delivered</span></div>
         </div>
       </div>
@@ -686,15 +675,15 @@
       <div class="project-body">
         <div class="project-meta">
           <span class="project-tag">Commercial</span>
-          <span class="project-tag">Estimating</span>
+          <span class="project-tag">Estimator</span>
         </div>
         <div class="project-title">Google Borregas</div>
         <div class="project-location">Sunnyvale, CA</div>
         <p class="project-desc">Five-storey mass timber office building featuring a multi-storey central atrium with a glulam skylight. Led estimating and quantity takeoffs for 666 CLT panels and 1,156 glulam elements.</p>
         <div class="project-specs">
-          <div class="spec"><span class="spec-val">182K</span><span class="spec-key">sq ft</span></div>
-          <div class="spec"><span class="spec-val">5</span><span class="spec-key">Storeys</span></div>
-          <div class="spec"><span class="spec-val">2021</span><span class="spec-key">Delivered</span></div>
+          <div class="spec"><span class="spec-val">182K</span><span class="spec-key">Sq ft</span></div>
+          <div class="spec"><span class="spec-val">~$8-12M</span><span class="spec-key">MT Package</span></div>
+          <div class="spec"><span class="spec-val">2019</span><span class="spec-key">Delivered</span></div>
         </div>
       </div>
     </div>
@@ -706,15 +695,15 @@
       <div class="project-body">
         <div class="project-meta">
           <span class="project-tag">Commercial</span>
-          <span class="project-tag">Estimating</span>
+          <span class="project-tag">Estimator</span>
         </div>
         <div class="project-title">Microsoft Silicon Valley Campus</div>
         <div class="project-location">Mountain View, CA</div>
         <p class="project-desc">One of the largest mass timber projects in North America. Hybrid CLT-concrete composite floors with glulam columns and steel beams. Led full estimating package including prefabrication logistics and MEP coordination assumptions.</p>
         <div class="project-specs">
-          <div class="spec"><span class="spec-val">644K</span><span class="spec-key">sq ft</span></div>
-          <div class="spec"><span class="spec-val">~$20M</span><span class="spec-key">MT Package</span></div>
-          <div class="spec"><span class="spec-val">2020</span><span class="spec-key">Delivered</span></div>
+          <div class="spec"><span class="spec-val">644K</span><span class="spec-key">Sq ft</span></div>
+          <div class="spec"><span class="spec-val">~$15-20M</span><span class="spec-key">MT Package</span></div>
+          <div class="spec"><span class="spec-val">2019</span><span class="spec-key">Delivered</span></div>
         </div>
       </div>
     </div>
@@ -726,15 +715,15 @@
       <div class="project-body">
         <div class="project-meta">
           <span class="project-tag">Residential</span>
-          <span class="project-tag">BIM Coordination</span>
-          <span class="project-tag">Estimating</span>
+          <span class="project-tag">Outsource Manager</span>
+          <span class="project-tag">Estimator</span>
         </div>
         <div class="project-title">Tallwood 1</div>
         <div class="project-location">Langford, BC</div>
         <p class="project-desc">12-storey mass timber residential tower on Vancouver Island. Managed outsourced detailing teams from award through fabrication, and performed initial quantity takeoffs and preliminary cost estimates.</p>
         <div class="project-specs">
-          <div class="spec"><span class="spec-val">165K</span><span class="spec-key">sq ft</span></div>
-          <div class="spec"><span class="spec-val">12</span><span class="spec-key">Storeys</span></div>
+          <div class="spec"><span class="spec-val">165K</span><span class="spec-key">Sq ft</span></div>
+          <div class="spec"><span class="spec-val">~$6-8M</span><span class="spec-key">MT Package</span></div>
           <div class="spec"><span class="spec-val">2021</span><span class="spec-key">Delivered</span></div>
         </div>
       </div>
@@ -747,14 +736,14 @@
       <div class="project-body">
         <div class="project-meta">
           <span class="project-tag">Institutional</span>
-          <span class="project-tag">Detailing</span>
+          <span class="project-tag">Sole Detailer</span>
         </div>
         <div class="project-title">Calgary Centre for Child & Adolescent Mental Health</div>
         <div class="project-location">Calgary, AB</div>
         <p class="project-desc">Complex institutional healthcare facility with exposed mass timber. Sole detailer — independently produced the complete Cadwork 3D model, erection drawings, shop drawings, and material lists.</p>
         <div class="project-specs">
-          <div class="spec"><span class="spec-val">12K</span><span class="spec-key">sq ft</span></div>
-          <div class="spec"><span class="spec-val">Solo</span><span class="spec-key">Detailer</span></div>
+          <div class="spec"><span class="spec-val">12K</span><span class="spec-key">Sq ft</span></div>
+          <div class="spec"><span class="spec-val">~$0.5M</span><span class="spec-key">MT Package</span></div>
           <div class="spec"><span class="spec-val">2021</span><span class="spec-key">Delivered</span></div>
         </div>
       </div>
