@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kurt Youell — Preconstruction & Estimating</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #1C1C1E;
+    --surface: #242426;
+    --surface2: #2C2C2E;
+    --border: #3A3A3C;
+    --text: #F2F2F0;
+    --muted: #8E8E93;
+    --accent: #2A9D8F;
+    --accent-light: #3DBDAD;
+    --accent-dim: rgba(42,157,143,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(28,28,30,0.94);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-name {
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 3rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-name {
+    font-size: clamp(56px, 9vw, 104px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 0.92;
+    color: var(--text);
+    margin-bottom: 2rem;
+  }
+
+  .hero-name span { color: var(--accent); }
+
+  .hero-tagline {
+    font-size: clamp(17px, 2vw, 21px);
+    font-weight: 400;
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 3rem;
+    line-height: 1.5;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .stat { display: flex; flex-direction: column; }
+
+  .stat-number {
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 5px;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.8rem 1.6rem;
+    border-radius: 3px;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: var(--accent-light); }
+  .btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-size: clamp(30px, 4vw, 46px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+
+  .section-intro {
+    color: var(--muted);
+    max-width: 580px;
+    margin-bottom: 3.5rem;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* TOOLS */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .tool-card {
+    background: var(--surface);
+    padding: 2rem;
+    transition: background 0.2s;
+  }
+
+  .tool-card:hover { background: var(--surface2); }
+
+  .tool-tab {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-dim);
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 3px;
+    margin-bottom: 1rem;
+  }
+
+  .tool-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    line-height: 1.25;
+  }
+
+  .tool-desc {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+  }
+
+  .tool-img {
+    width: 100%;
+    aspect-ratio: 16/10;
+    background: var(--surface2);
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tool-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+  }
+
+  .tool-img-placeholder {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--border);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .project-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .project-img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--surface2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .project-img img { width: 100%; height: 100%; object-fit: cover; }
+
+  .project-img-placeholder {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--border);
+  }
+
+  .project-body { padding: 1.5rem; }
+
+  .project-meta {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .project-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--surface2);
+    padding: 2px 8px;
+    border-radius: 3px;
+  }
+
+  .project-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+    line-height: 1.2;
+  }
+
+  .project-location {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .project-desc {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .project-specs {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .spec { display: flex; flex-direction: column; }
+
+  .spec-val {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .spec-key {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .about-headshot {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--accent);
+    flex-shrink: 0;
+    background: var(--surface2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-headshot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about-headshot-placeholder {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--border);
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .about-text p:first-child { color: var(--text); font-size: 18px; font-weight: 400; }
+
+  .skills-list { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .skill-row { display: flex; flex-direction: column; gap: 5px; }
+
+  .skill-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .skill-bar-bg {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .skill-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  /* CONTACT */
+  .contact-inner {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .contact-text h2 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-text p {
+    color: var(--muted);
+    font-size: 15px;
+    font-weight: 400;
+  }
+
+  .contact-links { display: flex; flex-direction: column; gap: 0.85rem; }
+
+  .contact-link {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: color 0.2s;
+  }
+
+  .contact-link:hover { color: var(--accent-light); }
+
+  .contact-link-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    min-width: 80px;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem 3rem;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--border);
+    text-transform: uppercase;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .hero-stats { gap: 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .about-headshot { width: 140px; height: 140px; }
+    .contact-inner { flex-direction: column; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-name">Kurt Youell</a>
+  <ul class="nav-links">
+    <li><a href="#tools">Work</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">Preconstruction · Estimating · Systems</div>
+  <h1 class="hero-name">Kurt<br><span>Youell</span></h1>
+  <p class="hero-tagline">A construction professional who builds things differently.</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-number">10+</span>
+      <span class="stat-label">Years experience</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">$20M+</span>
+      <span class="stat-label">Pursuits led</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">52</span>
+      <span class="stat-label">Active projects tracked</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">$327M</span>
+      <span class="stat-label">Pipeline value</span>
+    </div>
+  </div>
+  <div class="hero-links">
+    <a href="#tools" class="btn btn-primary">See the work</a>
+    <a href="https://www.linkedin.com/in/kurt-youell-b25b5370/" target="_blank" class="btn btn-secondary">LinkedIn</a>
+    <a href="#contact" class="btn btn-secondary">Get in touch</a>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<section id="tools">
+  <div class="section-label">Systems & Tools</div>
+  <h2 class="section-title">Built from scratch.</h2>
+  <p class="section-intro">The infrastructure behind effective preconstruction — tracking tools, estimating systems, proposals, and the processes that make teams actually work.</p>
+
+  <div class="tools-grid">
+
+    <div class="tool-card">
+      <span class="tool-tab">01 — Dashboards</span>
+      <div class="tool-title">Dashboards & Analytics</div>
+      <p class="tool-desc">Live pipeline tracking across 52 active projects with $327M in pursuit value. 8-month outlook forecasting, stage analytics, win/loss tracking, and sales summit goal reporting — all driven from a single master sheet.</p>
+      <div class="tool-img">
+        <img src="images/dashboards.png" alt="Pipeline dashboard and analytics" onerror="this.parentElement.innerHTML='<span class=\'tool-img-placeholder\'>Screenshot coming</span>'">
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <span class="tool-tab">02 — Models</span>
+      <div class="tool-title">Sales Models</div>
+      <p class="tool-desc">Dynamic 3D models built in Cadwork to evaluate scope, pricing, and feasibility early in the sales cycle. Enabled faster go/no-go decisions and clearer alignment between sales and operations before engineering is engaged.</p>
+      <div class="tool-img">
+        <img src="images/salesmodels.png" alt="Sales models" onerror="this.parentElement.innerHTML='<span class=\'tool-img-placeholder\'>Screenshot coming</span>'">
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <span class="tool-tab">03 — Estimating</span>
+      <div class="tool-title">Estimating Systems</div>
+      <p class="tool-desc">End-to-end estimating tools from conceptual through detailed pricing. Member schedules, cost analysis, scope breakdowns, and pricing summaries — built for transparency, repeatability, and rapid iteration under tight timelines.</p>
+      <div class="tool-img">
+        <img src="images/estimating.png" alt="Estimating tools" onerror="this.parentElement.innerHTML='<span class=\'tool-img-placeholder\'>Screenshot coming</span>'">
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <span class="tool-tab">04 — Proposals</span>
+      <div class="tool-title">Proposals & Marketing</div>
+      <p class="tool-desc">Client-facing proposals that translate complex mass timber scope into clear, visual, and commercially compelling presentations. Templates, scope matrices, VE analysis, and project timelines — designed to win work.</p>
+      <div class="tool-img">
+        <img src="images/proposals.png" alt="Proposals" onerror="this.parentElement.innerHTML='<span class=\'tool-img-placeholder\'>Screenshot coming</span>'">
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <span class="tool-tab">05 — Tracking</span>
+      <div class="tool-title">Project Tracking & Data Standards</div>
+      <p class="tool-desc">Centralized tracking tools for scope, quantities, schedules, and decision status across concurrent projects. Consistent data structures across models enabled cleaner handoffs, automation, and reliable downstream reporting.</p>
+      <div class="tool-img">
+        <img src="images/tracking.png" alt="Project tracking" onerror="this.parentElement.innerHTML='<span class=\'tool-img-placeholder\'>Screenshot coming</span>'">
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <span class="tool-tab">06 — Engineering</span>
+      <div class="tool-title">Concept-Level Engineering Tools</div>
+      <p class="tool-desc">Parametric calculators for early-stage GLT sizing and CLT fire-resistance checks. Supported informed design decisions and go/no-go calls before full engineering engagement — reducing cost and schedule risk at the front end.</p>
+      <div class="tool-img">
+        <img src="images/engineering.png" alt="Engineering calculators" onerror="this.parentElement.innerHTML='<span class=\'tool-img-placeholder\'>Screenshot coming</span>'">
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <span class="tool-tab">07 — Documentation</span>
+      <div class="tool-title">User Manuals & SOPs</div>
+      <p class="tool-desc">Clear, step-by-step documentation covering Cadwork standards, file naming conventions, SharePoint architecture, and fabrication design workflows. Built to reduce reliance on tribal knowledge and increase team autonomy at scale.</p>
+      <div class="tool-img">
+        <img src="images/sops.png" alt="SOPs and documentation" onerror="this.parentElement.innerHTML='<span class=\'tool-img-placeholder\'>Screenshot coming</span>'">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="projects">
+  <div class="section-label">Project Work</div>
+  <h2 class="section-title">On the ground.</h2>
+  <p class="section-intro">Estimating, BIM coordination, and fabrication design on some of the largest mass timber projects in North America.</p>
+
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-img">
+        <img src="images/proj-sunnyvale.png" alt="Sunnyvale Campus" onerror="this.parentElement.innerHTML='<span class=\'project-img-placeholder\'>Sunnyvale Campus</span>'">
+      </div>
+      <div class="project-body">
+        <div class="project-meta">
+          <span class="project-tag">Commercial</span>
+          <span class="project-tag">BIM Coordination</span>
+        </div>
+        <div class="project-title">Sunnyvale Campus</div>
+        <div class="project-location">Sunnyvale, CA — Major Tech Client</div>
+        <p class="project-desc">Multi-building mass timber commercial campus requiring 22 months of detailing. Managed outsourced detailing teams across 2,874 glulam members and 2,591 CLT panels, including ~300,000 lbs of factory-installed steel connections.</p>
+        <div class="project-specs">
+          <div class="spec"><span class="spec-val">300K</span><span class="spec-key">sq ft</span></div>
+          <div class="spec"><span class="spec-val">22mo</span><span class="spec-key">Detailing</span></div>
+          <div class="spec"><span class="spec-val">2022</span><span class="spec-key">Delivered</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-img">
+        <img src="images/proj-borregas.png" alt="Google Borregas" onerror="this.parentElement.innerHTML='<span class=\'project-img-placeholder\'>Google Borregas</span>'">
+      </div>
+      <div class="project-body">
+        <div class="project-meta">
+          <span class="project-tag">Commercial</span>
+          <span class="project-tag">Estimating</span>
+        </div>
+        <div class="project-title">Google Borregas</div>
+        <div class="project-location">Sunnyvale, CA</div>
+        <p class="project-desc">Five-storey mass timber office building featuring a multi-storey central atrium with a glulam skylight. Led estimating and quantity takeoffs for 666 CLT panels and 1,156 glulam elements.</p>
+        <div class="project-specs">
+          <div class="spec"><span class="spec-val">182K</span><span class="spec-key">sq ft</span></div>
+          <div class="spec"><span class="spec-val">5</span><span class="spec-key">Storeys</span></div>
+          <div class="spec"><span class="spec-val">2021</span><span class="spec-key">Delivered</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-img">
+        <img src="images/proj-microsoft.png" alt="Microsoft Silicon Valley Campus" onerror="this.parentElement.innerHTML='<span class=\'project-img-placeholder\'>Microsoft Silicon Valley</span>'">
+      </div>
+      <div class="project-body">
+        <div class="project-meta">
+          <span class="project-tag">Commercial</span>
+          <span class="project-tag">Estimating</span>
+        </div>
+        <div class="project-title">Microsoft Silicon Valley Campus</div>
+        <div class="project-location">Mountain View, CA</div>
+        <p class="project-desc">One of the largest mass timber projects in North America. Hybrid CLT-concrete composite floors with glulam columns and steel beams. Led full estimating package including prefabrication logistics and MEP coordination assumptions.</p>
+        <div class="project-specs">
+          <div class="spec"><span class="spec-val">644K</span><span class="spec-key">sq ft</span></div>
+          <div class="spec"><span class="spec-val">~$20M</span><span class="spec-key">MT Package</span></div>
+          <div class="spec"><span class="spec-val">2020</span><span class="spec-key">Delivered</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-img">
+        <img src="images/proj-tallwood.png" alt="Tallwood 1" onerror="this.parentElement.innerHTML='<span class=\'project-img-placeholder\'>Tallwood 1</span>'">
+      </div>
+      <div class="project-body">
+        <div class="project-meta">
+          <span class="project-tag">Residential</span>
+          <span class="project-tag">BIM Coordination</span>
+          <span class="project-tag">Estimating</span>
+        </div>
+        <div class="project-title">Tallwood 1</div>
+        <div class="project-location">Langford, BC</div>
+        <p class="project-desc">12-storey mass timber residential tower on Vancouver Island. Managed outsourced detailing teams from award through fabrication, and performed initial quantity takeoffs and preliminary cost estimates.</p>
+        <div class="project-specs">
+          <div class="spec"><span class="spec-val">165K</span><span class="spec-key">sq ft</span></div>
+          <div class="spec"><span class="spec-val">12</span><span class="spec-key">Storeys</span></div>
+          <div class="spec"><span class="spec-val">2021</span><span class="spec-key">Delivered</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-img">
+        <img src="images/proj-ccamh.png" alt="Calgary Centre for Child and Adolescent Mental Health" onerror="this.parentElement.innerHTML='<span class=\'project-img-placeholder\'>CCAMH Calgary</span>'">
+      </div>
+      <div class="project-body">
+        <div class="project-meta">
+          <span class="project-tag">Institutional</span>
+          <span class="project-tag">Detailing</span>
+        </div>
+        <div class="project-title">Calgary Centre for Child & Adolescent Mental Health</div>
+        <div class="project-location">Calgary, AB</div>
+        <p class="project-desc">Complex institutional healthcare facility with exposed mass timber. Sole detailer — independently produced the complete Cadwork 3D model, erection drawings, shop drawings, and material lists.</p>
+        <div class="project-specs">
+          <div class="spec"><span class="spec-val">12K</span><span class="spec-key">sq ft</span></div>
+          <div class="spec"><span class="spec-val">Solo</span><span class="spec-key">Detailer</span></div>
+          <div class="spec"><span class="spec-val">2021</span><span class="spec-key">Delivered</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="about">
+  <div class="section-label">About</div>
+  <h2 class="section-title">The person behind the work.</h2>
+  <div class="about-grid">
+    <div class="about-headshot">
+      <img src="images/headshot.png" alt="Kurt Youell" onerror="this.parentElement.innerHTML='<span class=\'about-headshot-placeholder\'>Photo coming</span>'">
+    </div>
+    <div class="about-text">
+      <p>I've spent 10 years in construction — estimating, BIM, fabrication design, and team leadership on some pretty significant projects across North America.</p>
+      <p>The part I enjoy most isn't the technical work itself. It's building the stuff around it. Estimating systems, proposal workflows, pipeline trackers, data dashboards, onboarding programs. The infrastructure that makes a team actually function well.</p>
+      <p>I've worn a lot of hats: modeler, estimator, preconstruction lead, proposal writer, process builder. The variety has made me better at all of it.</p>
+      <p>Based in Canada. Open to relocation — including internationally. Always open to connecting with interesting people doing interesting work.</p>
+    </div>
+    <div class="skills-list">
+      <div class="skill-row">
+        <span class="skill-name">Preconstruction & Estimating</span>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:95%"></div></div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">BIM & 3D Modeling (Cadwork)</span>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Data Analysis & Dashboards</span>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Proposals & Marketing</span>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:78%"></div></div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Team Leadership & Process Design</span>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">AI-Assisted Workflows</span>
+        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:75%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-text">
+      <h2>Let's talk.</h2>
+      <p>Open to preconstruction, estimating, and systems roles — in construction and beyond.</p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:kurt.youell@gmail.com" class="contact-link">
+        <span class="contact-link-label">Email</span>
+        kurt.youell@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/kurt-youell-b25b5370/" target="_blank" class="contact-link">
+        <span class="contact-link-label">LinkedIn</span>
+        kurt-youell-b25b5370
+      </a>
+      <a href="https://kurtyouell.carrd.co/" target="_blank" class="contact-link">
+        <span class="contact-link-label">Mass Timber</span>
+        kurtyouell.carrd.co
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Kurt Youell &nbsp;·&nbsp; AScT &nbsp;·&nbsp; Canada &nbsp;·&nbsp; 2026
+</footer>
+
+</body>
+</html>
