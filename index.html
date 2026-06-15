@@ -33,7 +33,6 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* NAV */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -56,11 +55,7 @@
     text-decoration: none;
   }
 
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
 
   .nav-links a {
     font-size: 13px;
@@ -74,7 +69,6 @@
 
   .nav-links a:hover { color: var(--accent); }
 
-  /* HERO */
   .hero {
     min-height: 85vh;
     display: flex;
@@ -140,11 +134,7 @@
     margin-top: 5px;
   }
 
-  .hero-links {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
+  .hero-links { display: flex; gap: 1rem; flex-wrap: wrap; }
 
   .btn {
     font-size: 12px;
@@ -163,7 +153,6 @@
   .btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
   .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* SECTIONS */
   section {
     padding: 5rem 3rem;
     max-width: 1100px;
@@ -193,7 +182,6 @@
     max-width: 580px;
     margin-bottom: 3rem;
     font-size: 16px;
-    font-weight: 400;
   }
 
   .divider {
@@ -204,7 +192,7 @@
     margin: 0 auto;
   }
 
-  /* TOOLS — 2 column */
+  /* TOOLS */
   .tools-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -223,9 +211,7 @@
 
   .tool-card:hover { background: var(--surface2); }
 
-  .tool-card.full-width {
-    grid-column: 1 / -1;
-  }
+  .tool-card.full-width { grid-column: 1 / -1; }
 
   .tool-tab {
     font-size: 10px;
@@ -250,7 +236,6 @@
 
   .tool-desc {
     font-size: 14px;
-    font-weight: 400;
     color: var(--muted);
     line-height: 1.65;
     margin-bottom: 1.25rem;
@@ -268,9 +253,7 @@
     justify-content: center;
   }
 
-  .tool-card.full-width .tool-img {
-    aspect-ratio: 21/9;
-  }
+  .tool-card.full-width .tool-img { aspect-ratio: 21/9; }
 
   .tool-img img {
     width: 100%;
@@ -300,6 +283,8 @@
     border-radius: 6px;
     overflow: hidden;
     transition: border-color 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
   }
 
   .project-card:hover { border-color: var(--accent); transform: translateY(-2px); }
@@ -324,14 +309,14 @@
     color: var(--border);
   }
 
-  .project-body { padding: 1.5rem; }
-
-  .project-meta {
+  .project-body {
+    padding: 1.5rem;
     display: flex;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
-    flex-wrap: wrap;
+    flex-direction: column;
+    flex: 1;
   }
+
+  .project-meta { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
 
   .project-tag {
     font-size: 10px;
@@ -363,9 +348,9 @@
 
   .project-desc {
     font-size: 14px;
-    font-weight: 400;
     color: var(--muted);
     line-height: 1.65;
+    flex: 1;
   }
 
   .project-specs {
@@ -375,6 +360,7 @@
     display: flex;
     gap: 1.5rem;
     flex-wrap: wrap;
+    align-items: flex-end;
   }
 
   .spec { display: flex; flex-direction: column; }
@@ -394,28 +380,54 @@
     color: var(--muted);
   }
 
+  .yt-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 1rem;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    padding: 6px 12px;
+    border-radius: 3px;
+    transition: all 0.2s;
+    align-self: flex-start;
+  }
+
+  .yt-btn:hover { background: var(--accent); color: #fff; }
+
+  .yt-icon { width: 14px; height: 14px; fill: currentColor; }
+
   /* ABOUT */
   .about-grid {
     display: grid;
-    grid-template-columns: 200px 1fr 1fr;
+    grid-template-columns: 220px 1fr 1fr;
     gap: 3rem;
     align-items: start;
   }
 
   .about-headshot {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     overflow: hidden;
     border: 3px solid var(--accent);
-    flex-shrink: 0;
     background: var(--surface2);
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .about-headshot img { width: 100%; height: 100%; object-fit: cover; }
+  .about-headshot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+  }
 
   .about-headshot-placeholder {
     font-size: 10px;
@@ -431,7 +443,6 @@
     color: var(--muted);
     margin-bottom: 1.25rem;
     font-size: 16px;
-    font-weight: 400;
   }
 
   .about-text p:first-child { color: var(--text); font-size: 18px; }
@@ -492,7 +503,6 @@
     min-width: 80px;
   }
 
-  /* FOOTER */
   footer {
     text-align: center;
     padding: 2rem 3rem;
@@ -504,7 +514,6 @@
     text-transform: uppercase;
   }
 
-  /* RESPONSIVE */
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { gap: 1rem; }
@@ -513,8 +522,9 @@
     .hero-stats { gap: 1.5rem; }
     .tools-grid { grid-template-columns: 1fr; }
     .tool-card.full-width { grid-column: 1; }
+    .tool-card.full-width .tool-img { aspect-ratio: 16/9; }
     .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .about-headshot { width: 130px; height: 130px; }
+    .about-headshot { width: 140px; height: 140px; }
     .contact-inner { flex-direction: column; }
   }
 
@@ -540,22 +550,10 @@
   <h1 class="hero-name">Kurt<br><span>Youell</span></h1>
   <p class="hero-tagline">A construction professional who builds things differently.</p>
   <div class="hero-stats">
-    <div class="stat">
-      <span class="stat-number">10+</span>
-      <span class="stat-label">Years experience</span>
-    </div>
-    <div class="stat">
-      <span class="stat-number">$20M+</span>
-      <span class="stat-label">Pursuits led</span>
-    </div>
-    <div class="stat">
-      <span class="stat-number">52</span>
-      <span class="stat-label">Active projects tracked</span>
-    </div>
-    <div class="stat">
-      <span class="stat-number">$327M</span>
-      <span class="stat-label">Pipeline value</span>
-    </div>
+    <div class="stat"><span class="stat-number">10+</span><span class="stat-label">Years experience</span></div>
+    <div class="stat"><span class="stat-number">$20M+</span><span class="stat-label">Pursuits led</span></div>
+    <div class="stat"><span class="stat-number">52</span><span class="stat-label">Active projects tracked</span></div>
+    <div class="stat"><span class="stat-number">$327M</span><span class="stat-label">Pipeline value</span></div>
   </div>
   <div class="hero-links">
     <a href="#tools" class="btn btn-primary">See the work</a>
@@ -573,7 +571,7 @@
 
   <div class="tools-grid">
 
-    <div class="tool-card">
+    <div class="tool-card full-width">
       <span class="tool-tab">01 — Dashboards</span>
       <div class="tool-title">Dashboards & Analytics</div>
       <p class="tool-desc">Live pipeline tracking across 52 active projects with $327M in pursuit value. 8-month outlook forecasting, stage analytics, win/loss tracking, and sales summit goal reporting — all driven from a single master sheet.</p>
@@ -583,16 +581,7 @@
     </div>
 
     <div class="tool-card">
-      <span class="tool-tab">02 — Models</span>
-      <div class="tool-title">Sales Models</div>
-      <p class="tool-desc">Dynamic 3D models built in Cadwork to evaluate scope, pricing, and feasibility early in the sales cycle. Enabled faster go/no-go decisions and clearer alignment between sales and operations before engineering is engaged.</p>
-      <div class="tool-img">
-        <img src="salesmodels.png" alt="Sales models" onerror="this.parentElement.innerHTML='<span class=\'tool-img-placeholder\'>Screenshot coming</span>'">
-      </div>
-    </div>
-
-    <div class="tool-card">
-      <span class="tool-tab">03 — Estimating</span>
+      <span class="tool-tab">02 — Estimating</span>
       <div class="tool-title">Estimating Systems</div>
       <p class="tool-desc">End-to-end estimating tools from conceptual through detailed pricing. Member schedules, cost analysis, scope breakdowns, and pricing summaries — built for transparency, repeatability, and rapid iteration under tight timelines.</p>
       <div class="tool-img">
@@ -601,11 +590,20 @@
     </div>
 
     <div class="tool-card">
-      <span class="tool-tab">04 — Proposals</span>
+      <span class="tool-tab">03 — Proposals</span>
       <div class="tool-title">Proposals & Marketing</div>
       <p class="tool-desc">Client-facing proposals that translate complex mass timber scope into clear, visual, and commercially compelling presentations. Templates, scope matrices, VE analysis, and project timelines — designed to win work.</p>
       <div class="tool-img">
         <img src="proposals.png" alt="Proposals" onerror="this.parentElement.innerHTML='<span class=\'tool-img-placeholder\'>Screenshot coming</span>'">
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <span class="tool-tab">04 — Models</span>
+      <div class="tool-title">Sales Models</div>
+      <p class="tool-desc">Dynamic 3D models built in Cadwork to evaluate scope, pricing, and feasibility early in the sales cycle. Enabled faster go/no-go decisions and clearer alignment between sales and operations before engineering is engaged.</p>
+      <div class="tool-img">
+        <img src="salesmodels.png" alt="Sales models" onerror="this.parentElement.innerHTML='<span class=\'tool-img-placeholder\'>Screenshot coming</span>'">
       </div>
     </div>
 
@@ -627,7 +625,7 @@
       </div>
     </div>
 
-    <div class="tool-card full-width">
+    <div class="tool-card">
       <span class="tool-tab">07 — Documentation</span>
       <div class="tool-title">User Manuals & SOPs</div>
       <p class="tool-desc">Clear, step-by-step documentation covering Cadwork standards, file naming conventions, SharePoint architecture, and fabrication design workflows. Built to reduce reliance on tribal knowledge and increase team autonomy at scale.</p>
@@ -650,6 +648,30 @@
 
     <div class="project-card">
       <div class="project-img">
+        <img src="proj-microsoft.png" alt="Microsoft Silicon Valley Campus" onerror="this.parentElement.innerHTML='<span class=\'project-img-placeholder\'>Microsoft Silicon Valley</span>'">
+      </div>
+      <div class="project-body">
+        <div class="project-meta">
+          <span class="project-tag">Commercial</span>
+          <span class="project-tag">Estimator</span>
+        </div>
+        <div class="project-title">Microsoft Silicon Valley Campus</div>
+        <div class="project-location">Mountain View, CA</div>
+        <p class="project-desc">One of the largest mass timber projects in North America. Hybrid CLT-concrete composite floors with glulam columns and steel beams. Led full estimating package including prefabrication logistics and MEP coordination assumptions.</p>
+        <div class="project-specs">
+          <div class="spec"><span class="spec-val">644K</span><span class="spec-key">Sq ft</span></div>
+          <div class="spec"><span class="spec-val">~$15-20M</span><span class="spec-key">MT Package</span></div>
+          <div class="spec"><span class="spec-val">2019</span><span class="spec-key">Delivered</span></div>
+        </div>
+        <a href="https://youtu.be/Zl0Hk4N1wyY" target="_blank" class="yt-btn">
+          <svg class="yt-icon" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+          Model flythrough
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-img">
         <img src="proj-sunnyvale.png" alt="Sunnyvale Campus" onerror="this.parentElement.innerHTML='<span class=\'project-img-placeholder\'>Sunnyvale Campus</span>'">
       </div>
       <div class="project-body">
@@ -665,6 +687,10 @@
           <div class="spec"><span class="spec-val">~$15-20M</span><span class="spec-key">MT Package</span></div>
           <div class="spec"><span class="spec-val">2022</span><span class="spec-key">Delivered</span></div>
         </div>
+        <a href="https://youtu.be/wWjxS97KCps" target="_blank" class="yt-btn">
+          <svg class="yt-icon" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+          Model flythrough
+        </a>
       </div>
     </div>
 
@@ -685,26 +711,10 @@
           <div class="spec"><span class="spec-val">~$8-12M</span><span class="spec-key">MT Package</span></div>
           <div class="spec"><span class="spec-val">2019</span><span class="spec-key">Delivered</span></div>
         </div>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-img">
-        <img src="proj-microsoft.png" alt="Microsoft Silicon Valley Campus" onerror="this.parentElement.innerHTML='<span class=\'project-img-placeholder\'>Microsoft Silicon Valley</span>'">
-      </div>
-      <div class="project-body">
-        <div class="project-meta">
-          <span class="project-tag">Commercial</span>
-          <span class="project-tag">Estimator</span>
-        </div>
-        <div class="project-title">Microsoft Silicon Valley Campus</div>
-        <div class="project-location">Mountain View, CA</div>
-        <p class="project-desc">One of the largest mass timber projects in North America. Hybrid CLT-concrete composite floors with glulam columns and steel beams. Led full estimating package including prefabrication logistics and MEP coordination assumptions.</p>
-        <div class="project-specs">
-          <div class="spec"><span class="spec-val">644K</span><span class="spec-key">Sq ft</span></div>
-          <div class="spec"><span class="spec-val">~$15-20M</span><span class="spec-key">MT Package</span></div>
-          <div class="spec"><span class="spec-val">2019</span><span class="spec-key">Delivered</span></div>
-        </div>
+        <a href="https://youtu.be/iVhqfqZyse4" target="_blank" class="yt-btn">
+          <svg class="yt-icon" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+          Model flythrough
+        </a>
       </div>
     </div>
 
@@ -726,6 +736,10 @@
           <div class="spec"><span class="spec-val">~$6-8M</span><span class="spec-key">MT Package</span></div>
           <div class="spec"><span class="spec-val">2021</span><span class="spec-key">Delivered</span></div>
         </div>
+        <a href="https://youtu.be/FZA6OV0XUjY" target="_blank" class="yt-btn">
+          <svg class="yt-icon" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+          Model flythrough
+        </a>
       </div>
     </div>
 
